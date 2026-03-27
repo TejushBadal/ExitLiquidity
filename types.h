@@ -1,4 +1,4 @@
-#pragma once
+#pragma once //always add
 #include <string>
 
 //enum for a single row in the csv
