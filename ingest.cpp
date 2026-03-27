@@ -3,7 +3,10 @@
 #include <sstream>
 #include <vector>
 #include <string>
+
+
 #include "types.h"
+#include "indicators.h"
 
 using namespace std;
 
@@ -72,8 +75,11 @@ int main(){
 
     vector<stock_row> parsed_output = parse_csv(csv_data);
 
-    for (int i = 0; i < 5; i++){
-        cout << parsed_output[i].date << endl;
+    //get moving average window
+    vector<double> moving_averages = moving_average(parsed_output, 20);
+
+    for (int i = 0; i < 25; i++){
+        cout << moving_averages[i] << endl;
     }
 
     return 0;
