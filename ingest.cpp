@@ -7,6 +7,7 @@
 
 #include "types.h"
 #include "indicators.h"
+#include "strategy.h"
 
 using namespace std;
 
@@ -76,10 +77,15 @@ int main(){
     vector<stock_row> parsed_output = parse_csv(csv_data);
 
     //get moving average window
-    vector<double> moving_averages = moving_average(parsed_output, 20);
+    vector<double> short_moving_average = moving_average(parsed_output, 20);
+    vector<double> long_moving_average = moving_average(parsed_output, 50);
 
-    for (int i = 0; i < 25; i++){
-        cout << moving_averages[i] << endl;
+    //call strategy layer
+    vector<Signal> decision_signals = crossover_strategy(short_moving_average, long_moving_average, 20, 50);
+
+    for (int i = 0; i < 100; i++){
+        
+        cout << decision_signals[i] << endl;
     }
 
     return 0;

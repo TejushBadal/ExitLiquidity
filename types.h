@@ -1,7 +1,8 @@
 #pragma once //always add
 #include <string>
+#include <vector>
 
-//enum for a single row in the csv
+//struct for a single row in the csv
 struct stock_row {
     std::string date;
     double close;
@@ -10,3 +11,5 @@ struct stock_row {
     double high;
     double low;
 };
+
+enum Signal { HOLD, BUY, SELL};
