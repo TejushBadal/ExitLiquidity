@@ -8,6 +8,7 @@
 #include "types.h"
 #include "indicators.h"
 #include "strategy.h"
+#include "portfolio.h"
 
 using namespace std;
 
@@ -83,10 +84,11 @@ int main(){
     //call strategy layer
     vector<Signal> decision_signals = crossover_strategy(short_moving_average, long_moving_average, 20, 50);
 
-    for (int i = 0; i < 100; i++){
-        
-        cout << decision_signals[i] << endl;
-    }
+    vector<double> simulation_results = simulate(parsed_output, decision_signals, 10000);
 
+    for (int i = 0; i < 100; i++){
+
+        cout << simulation_results[i] << endl;
+    }
     return 0;
 }

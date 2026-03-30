@@ -1,6 +1,7 @@
 #pragma once //always add
 #include <string>
 #include <vector>
+#include <map>
 
 //struct for a single row in the csv
 struct stock_row {
@@ -13,3 +14,16 @@ struct stock_row {
 };
 
 enum Signal { HOLD, BUY, SELL};
+
+//type must be defined before using in portfolio
+struct position{
+    std::string ticker;
+    int share_count;
+};
+
+struct portfolio{
+    double cash_reserve;
+    double value;
+    std::map<std::string, position> positions;
+};
+
