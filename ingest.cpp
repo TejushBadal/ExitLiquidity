@@ -9,6 +9,7 @@
 #include "indicators.h"
 #include "strategy.h"
 #include "portfolio.h"
+#include "metrics.h"
 
 using namespace std;
 
@@ -79,10 +80,10 @@ int main(){
 
     //get moving average window
     vector<double> short_moving_average = moving_average(parsed_output, 20);
-    vector<double> long_moving_average = moving_average(parsed_output, 50);
+    vector<double> long_moving_average = moving_average(parsed_output, 40);
 
     //call strategy layer
-    vector<Signal> decision_signals = crossover_strategy(short_moving_average, long_moving_average, 20, 50);
+    vector<Signal> decision_signals = crossover_strategy(short_moving_average, long_moving_average, 20, 40);
 
     vector<double> simulation_results = simulate(parsed_output, decision_signals, 10000);
 
@@ -90,5 +91,8 @@ int main(){
 
         cout << simulation_results[i] << endl;
     }
+
+    calculate_metrics(simulation_results, decision_signals);
+
     return 0;
 }
